@@ -14,26 +14,13 @@
   </head>
   <body>
     <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-      <h1>Teplota Labe Němčice</h1>
-      <p class="lead">Naměřené teploty v Němčicích</p>
+      <h1>Teplota Labe </h1>
+      <p class="lead">Naměřené teploty</p>
     </div>
 
     <div class="container">
       <div class="card-deck mb-3 text-center">
-        <div class="card mb-4 box-shadow">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Němčice</h4>
-          </div>
-          <div class="card-body">
-            <h1>Dnešní datum</h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>Teplota</li>
-              <li>Stav</li>
-              <li>Průtok</li>
-            </ul>
-          </div>
-        </div>
-        <div class="card mb-4 box-shadow">
+        <!-- <div class="card mb-4 box-shadow">
           <div class="card-header">
             <h4 class="my-0 font-weight-normal">Pardubice</h4>
           </div>
@@ -45,9 +32,23 @@
               <li>Průtok</li>
             </ul>
           </div>
+        </div> -->
+
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Němčice</h4>
+          </div>          
+          <div class="card-body">
+            <h1 id="actual-date">Dnešní datum</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li id="teplota-labe">Teplota</li>
+              <li id="stav-labe">Stav</li>
+              <li id="prutok-labe">Průtok</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </body>
-  <script src="index.js"></script>
+  <script src="src/app.js"></script>
 </html>
