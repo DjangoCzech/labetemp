@@ -1,6 +1,6 @@
 const teplotaLabe = document.querySelector('#teplota-labe')
 
-const urlLabe = "http://localhost:8000/results"
+const urlLabe = "https://teplota-labe.onrender.com/results"
 
 fetch(urlLabe)
     .then(response => response.json())
