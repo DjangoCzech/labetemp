@@ -27,20 +27,6 @@
 
     <div class="container">
       <div class="card-deck mb-3 text-center">
-        <!-- <div class="card mb-4 box-shadow">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Pardubice</h4>
-          </div>
-          <div class="card-body">
-            <h1>Dnešní datum</h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>Teplota</li>
-              <li>Stav</li>
-              <li>Průtok</li>
-            </ul>
-          </div>
-        </div> -->
-
         <div class="card mb-4 box-shadow">
           <div class="card-header">
             <h4 class="my-0 font-weight-normal">Němčice</h4>
@@ -102,6 +88,70 @@
             <!-- Modal End -->
           </div>
         </div>
+        <!-- Dašice -->
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Dašice</h4>
+          </div>
+          <div class="card-body">
+            <h1 id="teplota-loucna">Teplota</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li id="actual-date">Datum</li>
+              <li id="stav-labe">Stav</li>
+              <li id="prutok-labe">Průtok</li>
+            </ul>
+            <button
+              type="button"
+              class="btn btn-primary btn-lg"
+              data-bs-toggle="modal"
+              data-bs-target="#myModal"
+            >
+              Grafy
+            </button>
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="myModal"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="myModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Grafy teplot</h4>
+
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Zavřít"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>
+                      Kliknutím na popisek je možné vybrané statistiky skrýt.
+                    </p>
+                    <canvas id="myChartLoucna" width="50" height="50"></canvas>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Zavřít
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Modal End -->
+          </div>
+        </div>
+
+        <!-- Dašice end -->
       </div>
     </div>
 
