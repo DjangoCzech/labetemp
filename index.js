@@ -11,11 +11,37 @@ const urlLabe =
   "https://hydro.chmi.cz/hppsoldv/popup_hpps_prfdyn.php?seq=307338";
 const urlLoucna =
   "https://hydro.chmi.cz/hppsoldv/popup_hpps_prfdyn.php?seq=307363";
+const urlTeplotaDasice =
+  "https://www.in-pocasi.cz/predpoved-pocasi/cz/pardubicky/dasice-4075/";
+const urlTeplotaPardubice =
+  "https://www.in-pocasi.cz/predpoved-pocasi/cz/pardubicky/pardubice-300/";
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
 app.get("/", function (req, res) {
   res.send("Hello World");
+});
+
+app.get("/teplotaDasice", function (req, res) {
+  axios(urlTeplotaDasice).then((response) => {
+    const htmlTeplotaDasice = response.data;
+    const $ = cheerio.load(htmlTeplotaDasice);
+    const teplotaDasice = [];
+    var tempDasice = $(".alfa").text().trim();
+    teplotaDasice.push({ teplota: tempDasice });
+    res.json(teplotaDasice);
+  });
+});
+
+app.get("/teplotaPardubice", function (req, res) {
+  axios(urlTeplotaPardubice).then((response) => {
+    const htmlTeplotaDasice = response.data;
+    const $ = cheerio.load(htmlTeplotaDasice);
+    const teplotaDasice = [];
+    var tempDasice = $(".alfa").text().trim();
+    teplotaDasice.push({ teplota: tempDasice });
+    res.json(teplotaDasice);
+  });
 });
 
 app.get("/results", function (req, res) {
