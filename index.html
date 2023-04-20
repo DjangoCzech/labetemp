@@ -11,12 +11,18 @@
       crossorigin="anonymous"
     />
     <script
+      src="https://code.jquery.com/jquery-3.6.4.min.js"
+      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+      crossorigin="anonymous"
+    ></script>
+    <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
     <script defer type="text/javascript" src="src/app.js"></script>
+    <script defer type="text/javascript" src="src/appLoucna.js"></script>
     <title>Sledování teploty Labe</title>
   </head>
   <body>
@@ -32,7 +38,7 @@
             <h4 class="my-0 font-weight-normal">Němčice</h4>
           </div>
           <div class="card-body">
-            <h1 id="teplota-labe">Teplota</h1>
+            <h1 id="teplota-labe">Teplota vody</h1>
             <ul class="list-unstyled mt-3 mb-4">
               <li id="actual-date">Datum</li>
               <li id="stav-labe">Stav</li>
@@ -71,7 +77,7 @@
                     <p>
                       Kliknutím na popisek je možné vybrané statistiky skrýt.
                     </p>
-                    <canvas id="myChart" width="50" height="50"></canvas>
+                    <canvas id="myChartLabe" width="50" height="50"></canvas>
                   </div>
                   <div class="modal-footer">
                     <button
@@ -94,24 +100,24 @@
             <h4 class="my-0 font-weight-normal">Dašice</h4>
           </div>
           <div class="card-body">
-            <h1 id="teplota-loucna">Teplota</h1>
+            <h1 id="teplota-loucna">Teplota vody</h1>
             <ul class="list-unstyled mt-3 mb-4">
-              <li id="actual-date">Datum</li>
-              <li id="stav-labe">Stav</li>
-              <li id="prutok-labe">Průtok</li>
+              <li id="actual-date-loucna">Datum</li>
+              <li id="stav-loucna">Stav</li>
+              <li id="prutok-loucna">Průtok</li>
             </ul>
-            <button
+            <!-- <button
               type="button"
               class="btn btn-primary btn-lg"
               data-bs-toggle="modal"
-              data-bs-target="#myModal"
+              data-bs-target="#myModalLoucna"
             >
               Grafy
-            </button>
+            </button> -->
             <!-- Modal -->
             <div
               class="modal fade"
-              id="myModal"
+              id="myModalLoucna"
               tabindex="-1"
               role="dialog"
               aria-labelledby="myModalLabel"
@@ -154,7 +160,5 @@
         <!-- Dašice end -->
       </div>
     </div>
-
-    <canvas id="myChart" width="50" height="50"></canvas>
   </body>
 </html>

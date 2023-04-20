@@ -2,16 +2,18 @@ const teplotaLabe = document.querySelector("#teplota-labe");
 
 const urlLabe = "https://teplota-labe.onrender.com/results";
 
-fetch(urlLabe)
+const fetchDataFromUrl = fetch(urlLabe)
   .then((response) => response.json())
   .then((data) => {
+    var items = [];
     var t = document.getElementById("teplota-labe");
-    var tchange = data[0]["teplota"];
-    var tfloat = parseFloat(tchange.replace(",", ".").replace(" ", ""));
+    var tchange = data[0]["teplota"].replace(".", ",");
     var d = document.getElementById("actual-date");
     var s = document.getElementById("stav-labe");
     var p = document.getElementById("prutok-labe");
-    t.innerHTML = `Teplota ${tfloat} °C`;
+    items.push(t);
+    items.push(d);
+    t.innerHTML = `Teplota vody ${tchange} °C`;
     d.innerHTML = `Měřeno: ${data[0]["datum"]}`;
     s.innerHTML = `Stav: ${data[0]["stav"]} cm`;
     p.innerHTML = `Průtok: ${data[0]["prutok"]} m<sup>3</sup>s<sup>-1</sup>`;
@@ -22,16 +24,11 @@ fetch(urlLabe)
     let prutokOnly = data.map((item) => item.prutok).reverse();
 
     showChart(tempsOnly, datesOnly, stavOnly, prutokOnly);
-
-    console.log(tempsOnly);
-
-    //console.log(data[0]["teplota"])
   });
 
 function showChart(temps, dates, stav, prutok) {
-  const ctx = document.getElementById("myChart");
-  //const xlabels = dates;
-  new Chart(ctx, {
+  const ctxLabe = document.getElementById("myChartLabe");
+  let myChart = new Chart(ctxLabe, {
     data: {
       datasets: [
         {
@@ -62,25 +59,6 @@ function showChart(temps, dates, stav, prutok) {
   });
 }
 
-// const ctx = document.getElementById("myChart");
-// const xlabels = ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"];
-// new Chart(ctx, {
-//   type: "line",
-//   data: {
-//     labels: xlabels,
-//     datasets: [
-//       {
-//         label: "# of Votes",
-//         data: [12, 19, 3, 5, 2, 3],
-//         borderWidth: 1,
-//       },
-//     ],
-//   },
-//   options: {
-//     scales: {
-//       y: {
-//         beginAtZero: true,
-//       },
-//     },
-//   },
-// });
+function destroyChart() {
+  myChart.destroy();
+}
