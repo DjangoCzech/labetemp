@@ -10,11 +10,18 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
+    <script defer type="text/javascript" src="src/app.js"></script>
     <title>Sledování teploty Labe</title>
   </head>
   <body>
     <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-      <h1>Teplota Labe </h1>
+      <h1>Teplota Labe</h1>
       <p class="lead">Naměřené teploty</p>
     </div>
 
@@ -37,7 +44,7 @@
         <div class="card mb-4 box-shadow">
           <div class="card-header">
             <h4 class="my-0 font-weight-normal">Němčice</h4>
-          </div>          
+          </div>
           <div class="card-body">
             <h1 id="teplota-labe">Teplota</h1>
             <ul class="list-unstyled mt-3 mb-4">
@@ -45,10 +52,59 @@
               <li id="stav-labe">Stav</li>
               <li id="prutok-labe">Průtok</li>
             </ul>
+            <button
+              type="button"
+              class="btn btn-primary btn-lg"
+              data-bs-toggle="modal"
+              data-bs-target="#myModal"
+            >
+              Grafy
+            </button>
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="myModal"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="myModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Grafy teplot</h4>
+
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Zavřít"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>
+                      Kliknutím na popisek je možné vybrané statistiky skrýt.
+                    </p>
+                    <canvas id="myChart" width="50" height="50"></canvas>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Zavřít
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Modal End -->
           </div>
         </div>
       </div>
     </div>
+
+    <canvas id="myChart" width="50" height="50"></canvas>
   </body>
-  <script src="src/app.js"></script>
 </html>
