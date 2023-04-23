@@ -1,9 +1,9 @@
 const teplotaLoucna = document.querySelector("#teplota-loucna");
 
-const urlLoucna = "https://teplota-labe.onrender.com/resultsloucna";
+const urlLoucna = "https://teplotalabenode.azurewebsites.net/resultsloucna";
 
-const urlTempDasice = "https://teplota-labe.onrender.com/teplotaDasice";
-const urlTempPardubice = "https://teplota-labe.onrender.com/teplotaPardubice";
+const urlTempDasice = "https://teplotalabenode.azurewebsites.net/teplotaDasice";
+const urlTempPardubice = "https://teplotalabenode.azurewebsites.net/teplotaPardubice";
 
 fetch(urlLoucna)
   .then((response) => response.json())

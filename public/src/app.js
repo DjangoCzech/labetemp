@@ -1,6 +1,17 @@
+var fs = require("fs");
 const teplotaLabe = document.querySelector("#teplota-labe");
+const urlLabeResults = "http://localhost:3000";
+// const urlLabeResults = "https://teplotalabenode.azurewebsites.net";
+var obj;
 
-const urlLabe = "https://teplota-labe.onrender.com/results";
+fs.readFile('temps-labe.json', 'utf8', function (err, data) {
+    if (err) throw err;
+    obj = JSON.parse(data);
+    console.log(obj);
+    var items = [];
+    var t = document.getElementById("teplota-labe");
+});
+
 
 const fetchDataFromUrl = fetch(urlLabe)
   .then((response) => response.json())

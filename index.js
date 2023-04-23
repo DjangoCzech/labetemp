@@ -5,6 +5,7 @@ const cheerio = require("cheerio");
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const { log } = require("console");
 app.use(cors());
 
 const urlLabe =
@@ -18,9 +19,11 @@ const urlTeplotaPardubice =
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
-app.get("/", function (req, res) {
-  res.send("Hello World");
-});
+// app.get("/", function (req, res) {
+//   res.send("Hello World");
+// });
+
+app.use(express.static(__dirname + '/public'));
 
 app.get("/teplotaDasice", function (req, res) {
   axios(urlTeplotaDasice).then((response) => {
@@ -70,6 +73,58 @@ app.get("/results", function (req, res) {
     const teplotaLabe = teplotyLabe[0]["teplota"];
   });
 });
+
+app.get("/resultsStatic", function (req, res) {
+  fs.readFile("public/src/temps-labe.json", "utf8", function (err, data) {
+    if (err) throw err;
+    var obj = JSON.parse(data);
+    res.json(obj[0].waterTemps[0]); 
+    });
+});
+
+app.get("/addtemplabe", function (req, res) {
+  axios(urlLabe).then((response) => {
+    const htmlLabe = response.data;
+    const $ = cheerio.load(htmlLabe);
+    const teplotyLabe = [];
+    $(".center_text tr", htmlLabe).each(function () {
+      const datum = $(this).find("td").eq(0).text();
+      const stav = $(this).find("td").eq(1).text();
+      const prutok = $(this).find("td").eq(2).text();
+      var teplota = $(this).find("td").eq(3).text();
+      if (teplota) {
+        teplotyLabe.push({
+          datum,
+          stav,
+          prutok,
+          teplota,
+        });
+      }
+    });
+
+
+
+    fs.readFile("public/src/temps-labe.json", "utf8", function (err, data) {
+      if (err) throw err;
+      var testObj = "{\"datum\": \"23.04.2023 57:00\",\"stav\": \"pocem\",\"prutok\": \"68\",\"teplota\": \"11.1\"}";
+      var testParse = JSON.parse(testObj);
+      var obj = JSON.parse(data);
+      // obj[0].waterTemps[0]['labeTemps'].unshift(teplotyLabe[0]);
+      obj[0].waterTemps[0]['labeTemps'].unshift(testParse);      
+      data = JSON.stringify(obj, null, 2);
+      fs.writeFileSync("public/src/temps-labe.json", data);       
+      });
+
+
+    fs.readFile("public/src/temps-labe.json", "utf8", function (err, data) {
+      if (err) throw err;
+      var obj = JSON.parse(data);
+      res.json(obj);
+    });
+    //res.json(teplotyLabe[0]);    
+  });
+});
+
 
 app.get("/resultsloucna", function (req, res) {
   axios(urlLoucna).then((response) => {

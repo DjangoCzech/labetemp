@@ -1,3 +1,5 @@
 {
-  "liveServer.settings.port": 5501
+  "liveServer.settings.port": 5501,
+  "appService.defaultWebAppToDeploy": "/subscriptions/79bca979-545b-49f0-877f-f1c9fd3c0185/resourceGroups/teplotalabenode/providers/Microsoft.Web/sites/teplotalabenode",
+  "appService.deploySubpath": "."
 }
